@@ -1,0 +1,9 @@
+This program is a tool for the encryption, decryption, and attacking of both the Caesar and affine ciphers.
+
+For the Caesar cipher, encryption and decryption are straightforward, the formula is c ≡ p + k (mod 26) where p is a plaintext letter, k is the key, and c is encrypted letter. We can reverse this to p ≡ c - k (mod 26) for decryption.
+
+For the affine cipher, encryption and decryption are only a bit more complicated. The formula is c ≡ a·p + b (mod 26) where p is a plaintext letter, (a, b) is the key, and c is encrypted letter. To decrypt we find the following formula p ≡ a_inv·(c-b) where a_inv is the inverse of a a modulo 26. Note that this means that a must have an inverse modulo 26 for the cipher to be possible to decrypt.
+
+For a plaintext attack, we have both the plaintext and its corresponding ciphertext for some cipher. In the case of the Caesar cipher, we simply shift the formula once more to obtain k ≡ c - p (mod 26), then we need only look at one letter to obtain the key for the cipher. In the case of the affine cipher, we nee at least two distinct letters to set up a system of equations to solve for both a and b.
+
+For a ciphertext attack, we are given only the ciphertext of an encrypted message. In the case of both the Caesar and the affine cipher, on a long enough message, we could use frequency analysis, which is looking at the frequency of letters in the ciphertext and comparing them to the frequencies of the english language and making educated letter substitutions to eventually obtain the original plaintext, which we could then plaintext attack to obtain the key. However, in the case of the Caesar and affine ciphers, there are only 26 and 312 keys respectively, so it is practical for a computer to simply decrypt the message for all possible keys, and then check which message makes sense as english plaintext.
